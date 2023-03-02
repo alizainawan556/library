@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="data_id_from">
+        <field name="name">data.id.from</field>
+        <field name="model">lib.staff</field>
+        <field name="arch" type="xml">
+            <form string="Record of data">
+                <sheet>
+                    <group>
+                        <group>
+                            <separator string="Basic Information Student" colspan="2"/>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="dob"/>
+                            <field name="gender"/>
+                            <field name="status"/>
+                            <field name="Section"/>
+                            <field name="Number"/>
+                        </group>
+                        <group>
+                            <separator string="Additional Information Student" colspan="2"/>
+                            <field name="email"/>
+                            <field name="state"/>
+                            <field name="time" widget="float_time"/>
+                            <field name="Date"/>
+                            <field name="photo"/>
+                            <field name="country_id" widget="Many2many"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="data_tree_view">
+        <field name="name">data.tree.view</field>
+        <field name="model">lib.staff</field>
+        <field name="arch" type="xml">
+            <tree string="Data Tree">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="dob"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="filter_model" model="ir.ui.view">
+        <field name="model">lib.staff</field>
+        <field name="arch" type="xml">
+
+            <!--                search view-->
+            <search string="Filters">
+                <field name="name" string="name"/>
+                <!--                    filter -->
+                <filter string="gender" domain="[('gender','=','Male')]" name="male"/>
+                <!--                    <filter string="Shared" domain="[('user_id','=',False)]" name="shared" help="Filters shared with all users"/>-->
+                <!--                    <filter string="My filters" domain="[('user_id','=',uid)]" name="my_filters" help="Filters created by myself"/>-->
+                <separator/>
+                <filter string="Active" name="active" domain="[('status', '=', 'Active')]"/>
+                <!--                    groupby-->
+                <group expand="0" string="Group By">
+                    <filter string="Male" name="male" domain="[]" context="{'group_by':'gender'}"/>
+                    <!--                        <filter string="Model" name="model" domain="[]" context="{'group_by':'model_id'}"/>-->
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--    <record model="ir.ui.view" id="model_search_view">-->
+    <!--        <field name="name">model.search.view</field>-->
+    <!--        <field name="model">data.record</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search string="Search data">-->
+    <!--                <field name="name"/>-->
+    <!--                <separator/>-->
+    <!--                <filter string="Male" name="male" domain="[('gender','=', 'male')]"/>-->
+    <!--&lt;!&ndash;                <filter string="male" name="Male" domain="[{'gender','=','male'}]"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <filter string="female" name="Female" domain="[{'gender','=','female'}]"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <filter string="other" name="other" domain="[{'gender','=','other'}]"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <separator/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <filter string="Active" name="active" domain="[{'status','=','active'}]"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <filter string="Shutdown  " name="shutdown" domain="[('status','=','shutdown')]"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <group string="Group by" expand="0">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                 </group>&ndash;&gt;-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <record id="record_action_id" model="ir.actions.act_window">
+        <field name="name">Student Data</field>
+        <field name="res_model">lib.staff</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem
+            id="records"
+            name="Student Record"
+            parent="main_button"
+            action="record_action_id"
+            sequence="3"/>
+
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lib_staff,lib.staff,model_lib_staff,,1,1,1,1
+access_record_teacher,record.teacher,model_record_teacher,,1,1,1,1
+access_new_lib,new.lib,model_new_lib,,1,1,1,1

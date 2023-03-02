@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    from view for record teachers-->
+    <record model="ir.ui.view" id="teacher_form">
+        <field name="name">teacher.form</field>
+        <field name="model">record.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Teacher Form">
+                <sheet>
+                    <group>
+                        <group>
+<!--                            Use seprator tag to seprate the fields into two from-->
+                        <seprator string = "Teachers Information" colspan="2"/>
+                        <field name="Teacher_Name"/>
+                        <field name="Subject_Name"/>
+                        <field name="Lec_No"/>
+                        <field name="gender"/>
+                        </group>
+                        <group>
+                        <seprator string = "Library Record" colspan="2"/>
+                        <field name="Section_Name"/>
+                        <field name="Time"/>
+                        <field name="department"/>
+                        <field name="batch_no"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    tree view for records teacher-->
+
+    <record model="ir.ui.view" id="teacher_tree_view">
+        <field name="name">teacher.tree.view</field>
+        <field name="model">record.teacher</field>
+        <field name="arch" type="xml">
+            <tree string="TeacherTree">
+                <field name="Teacher_Name"/>
+                <field name="Subject_Name"/>
+                <field name="Lec_No"/>
+            </tree>
+        </field>
+    </record>
+
+
+<!--    action id for records teacher-->
+
+    <record id="teacher_submenu_action_id" model="ir.actions.act_window">
+        <field name="name">Staff Data</field>
+        <field name="res_model">record.teacher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--     create main button and in main create sub button for record teacher-->
+<!--    main-button-->
+    <menuitem
+            id="main_button"
+            name="Library"
+            sequence="1"
+            web_icon = "/home/zainawan/programming/odoo16/env/zainlib/addons/library_module_new/static/description/icon.png"/>
+<!--       sub-buttoon-->
+       <menuitem
+            id="menu_teacher_sub"
+            name="Staff Record"
+            parent="main_button"
+            action="teacher_submenu_action_id"
+            sequence="2"/>
+
+
+</odoo>
